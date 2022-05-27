@@ -1,0 +1,70 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+    <title></title>
+</head>
+
+<body>
+    <br/>
+
+    <form id="editForm">
+        <label for="firstname" style="font-size: 35px; font-family: 'Raleway', sans-serif;">First Name</label>
+        <input type="text" name="firstname" id="firstname" style="width: 400px;  height: 30px; border-color:rgb(197,148,80);; background-color: rgb(197,148,80);"><br/>
+        <label for="lastname" style="font-size: 35px; font-family: 'Raleway', sans-serif;">Last Name</label>
+        <input type="text" name="lastname" id="lastname" style="width: 400px;  height: 30px; border-color:rgb(197,148,80);; background-color: rgb(197,148,80);"><br/>
+        <label for="mobile" style="font-size: 35px; font-family: 'Raleway', sans-serif;">Mobile</label>
+        <input type="text" name="mobile" id="mobile" style="width: 460px; height: 30px; border-color:rgb(197,148,80);; background-color: rgb(197,148,80);"><br/>
+        <label for="email" style="font-size: 35px; font-family: 'Raleway', sans-serif;">Email</label>
+        <input type="text" name="email" id="email" style="width: 480px; height: 30px; border-color:rgb(197,148,80);; background-color: rgb(197,148,80);"><br/>
+        <label for="avatar" style="font-size: 35px; font-family: 'Raleway', sans-serif;">Avatar</label>
+        <input type="file" name="avatar" id="avatar"><br/>
+        <button type="submit" id="submitForm">Submit</button>
+    </form>
+
+    <button id="homeLink " type="button ">Home</button>
+
+    <script src="config.js "></script>
+    <script>
+        document.getElementById("submitForm ").addEventListener('click', submitForm);
+        document.getElementById("homeLink ").addEventListener('click', homeLink);
+
+        function submitForm(e) {
+            e.preventDefault();
+
+            const form = new FormData(document.querySelector('#editForm'));
+            form.append('apiKey', apiKey);
+
+            fetch(rootPath + 'controller/insert-contact/', {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json, *.*'
+                    },
+                    body: form
+                })
+                .then(function(response) {
+                    return response.text();
+                })
+                .then(function(data) {
+                    if (data == "1 ") {
+                        alert("Contact added. ");
+                        homeLink();
+                    } else {
+                        alert(data);
+                        homeLink();
+                    }
+                })
+        }
+
+        function homeLink() {
+            window.open("index.html ", "_self ");
+        }
+    </script>
+</body>
+
+</html>

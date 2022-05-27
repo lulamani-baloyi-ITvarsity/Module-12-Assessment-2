@@ -1,0 +1,25 @@
+body {
+    background-color: rgb(225, 213, 201);
+    padding-left: 350px;
+    font-size: 60px;
+}
+
+button {
+    background-color: rgb(34, 35, 37);
+    width: 100px;
+    height: 50px;
+    color: antiquewhite;
+    border-radius: 400px;
+    font-size: 15px;
+    font-family: 'Raleway', sans-serif;
+}
+
+table {
+    font-size: 20px;
+    font-family: 'Raleway', sans-serif;
+}
+
+img {
+    width: 80px;
+    height: 80px;
+}
